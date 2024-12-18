@@ -11,8 +11,13 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,20 +33,25 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun Screen1(navController: NavHostController){
-    Column(modifier = Modifier.padding(16.dp), verticalArrangement= Arrangement.spacedBy(16.dp)){
-        DestinationsProgressCard(Modifier.fillMaxWidth())
-        DepartureArrivalRow(Modifier.fillMaxWidth())
-        TimeStatusCard(modifier=Modifier.fillMaxWidth())
-        MiscInformationCard(modifier=Modifier.fillMaxWidth())
-        Button(onClick = { navController.navigate("screen2") },modifier=Modifier.fillMaxWidth()) { Text("Ticket") }
-    }
+    Screen1Shower(onButtonClick={navController.navigate("screen2")})
 }
 
-@Preview(showBackground=true, showSystemUi = true, device="spec:width=1280dp,height=800dp,dpi=240")
+@Preview
 @Composable
-fun PreviewScreen1(){
-    val navController = rememberNavController()
-    Screen1(navController)
+fun Screen1Shower(@PreviewParameter(SampleProvider::class) onButtonClick: () -> Unit){
+    Scaffold(){ innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding).padding(16.dp), verticalArrangement= Arrangement.spacedBy(16.dp)){
+            DestinationsProgressCard(Modifier.fillMaxWidth())
+            DepartureArrivalRow(Modifier.fillMaxWidth())
+            TimeStatusCard(modifier=Modifier.fillMaxWidth())
+            MiscInformationCard(modifier=Modifier.fillMaxWidth())
+            Button(onClick = onButtonClick,modifier=Modifier.fillMaxWidth()) { Text("Ticket") }
+        }
+    }
+
+}
+class SampleProvider: PreviewParameterProvider<()->Unit>{
+    override val values = sequenceOf({})
 }
 
 @Preview(showBackground = true)

@@ -32,14 +32,5 @@ class MainActivity : ComponentActivity() {
 @Preview(showSystemUi = true)
 fun Screen(){
     val navController = rememberNavController()
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Navigation(navController=navController, innerPadding=innerPadding)
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-@Preview
-fun TopBar(){
-    CenterAlignedTopAppBar(title={Text("Hello!")})
+    Navigation(navController=navController)
 }

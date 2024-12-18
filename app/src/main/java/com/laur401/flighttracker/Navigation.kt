@@ -9,8 +9,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 @Composable
-fun Navigation(navController: NavHostController, innerPadding: PaddingValues){
-    NavHost(navController=navController, modifier= Modifier.padding(innerPadding), startDestination="screen1"){
+fun Navigation(navController: NavHostController){
+    NavHost(navController=navController, startDestination="screen1"){
         composable("screen1"){ Screen1(navController=navController) }
+        composable("screen2"){ Screen2(navController=navController) }
     }
 }
