@@ -28,11 +28,11 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun Screen1(navController: NavHostController){
-    Column(modifier = Modifier.systemBarsPadding().padding(16.dp), verticalArrangement= Arrangement.spacedBy(16.dp)){
+    Column(modifier = Modifier.padding(16.dp), verticalArrangement= Arrangement.spacedBy(16.dp)){
         DestinationsProgressCard(Modifier.fillMaxWidth())
         DepartureArrivalRow(Modifier.fillMaxWidth())
         TimeStatusCard(modifier=Modifier.fillMaxWidth())
-        MiscInformationCard()
+        MiscInformationCard(modifier=Modifier.fillMaxWidth())
         Button(onClick = { navController.navigate("screen2") },modifier=Modifier.fillMaxWidth()) { Text("Ticket") }
     }
 }
@@ -110,7 +110,7 @@ fun TimeStatusCard(modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 fun MiscInformationCard(modifier: Modifier = Modifier){
-    Card(modifier=modifier){
+    Card(modifier=modifier.width(IntrinsicSize.Min)){
         Column(modifier=Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)){
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)){
                 Column(modifier=Modifier.weight(1f)){
@@ -118,7 +118,7 @@ fun MiscInformationCard(modifier: Modifier = Modifier){
                     Text("4",style=MaterialTheme.typography.titleLarge)
                 }
                 Column(modifier=Modifier.weight(1f)){
-                    Text("Board at",style=MaterialTheme.typography.titleMedium)
+                    Text("Board at",style=MaterialTheme.typography.titleMedium,modifier=Modifier.width(IntrinsicSize.Max))
                     Text("Front",style=MaterialTheme.typography.titleLarge)
                 }
             }
@@ -128,7 +128,7 @@ fun MiscInformationCard(modifier: Modifier = Modifier){
                     Text("A13",style=MaterialTheme.typography.titleLarge)
                 }
                 Column(modifier=Modifier.weight(1f)){
-                    Text("Flight code",style=MaterialTheme.typography.titleMedium)
+                    Text("Flight code",style=MaterialTheme.typography.titleMedium,modifier=Modifier.width(IntrinsicSize.Max))
                     Text("FR9356",style=MaterialTheme.typography.titleLarge)
                 }
             }

@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,9 +29,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+@Preview(showSystemUi = true)
 fun Screen(){
     val navController = rememberNavController()
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Navigation(navController=navController)
+        Navigation(navController=navController, innerPadding=innerPadding)
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+@Preview
+fun TopBar(){
+    CenterAlignedTopAppBar(title={Text("Hello!")})
 }
